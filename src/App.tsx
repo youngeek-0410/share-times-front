@@ -1,12 +1,16 @@
-import React from 'react'
+import * as React from 'react'
 import AppRouter from 'AppRouter'
+
+import { ChakraProvider } from '@chakra-ui/react'
+
+import Header from 'common/components/Header'
 
 function App() {
   return (
-    <div>
-      <p>hi, header.</p>
+    <ChakraProvider>
+      <Header />
       <AppRouter />
-    </div>
+    </ChakraProvider>
   )
 }
 
