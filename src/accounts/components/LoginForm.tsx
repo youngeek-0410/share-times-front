@@ -52,6 +52,7 @@ const LoginForm = () => {
       .then((res) => {
         setError('')
         localStorage.setItem('token', res.data.token)
+        localStorage.setItem('username', organizationName)
         toast({
           title: 'ログインしました！',
           status: 'success',
