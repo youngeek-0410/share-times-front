@@ -7,6 +7,7 @@ import {
   Input,
   Button,
   Select,
+  useToast,
 } from '@chakra-ui/react'
 
 import { Organization } from 'types/WaitingTimeHistories'
@@ -14,6 +15,8 @@ import { Organization } from 'types/WaitingTimeHistories'
 import { client } from 'services/api/client'
 import { AxiosError } from 'axios'
 import { LoginErrors } from 'types/LoginErrors'
+import { submitWaitingTimeFormPath } from 'common/utils/paths'
+import { useHistory } from 'react-router'
 
 const LoginForm = () => {
   const [organizationName, setOrganizationName] = useState<string>('')
@@ -22,6 +25,9 @@ const LoginForm = () => {
 
   const [error, setError] = useState<string>('')
   const [organizationError, setOrganizationError] = useState<string>('')
+
+  const history = useHistory()
+  const toast = useToast()
 
   useEffect(() => {
     client
@@ -46,6 +52,13 @@ const LoginForm = () => {
       .then((res) => {
         setError('')
         localStorage.setItem('token', res.data.token)
+        toast({
+          title: 'ログインしました！',
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
+        history.push(submitWaitingTimeFormPath)
       })
       .catch((e: AxiosError<LoginErrors>) => {
         setError('パスワードが間違っています')
