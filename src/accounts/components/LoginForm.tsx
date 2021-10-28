@@ -10,11 +10,11 @@ import {
   useToast,
 } from '@chakra-ui/react'
 
-import { Organization } from 'types/WaitingTimeHistories'
+import { Organization } from 'common/types/WaitingTimeHistories'
 
-import { client } from 'services/api/client'
+import { client } from 'common/api/client'
 import { AxiosError } from 'axios'
-import { LoginErrors } from 'types/LoginErrors'
+import { LoginErrors } from 'common/types/LoginErrors'
 import { submitWaitingTimeFormPath } from 'common/utils/paths'
 import { useHistory } from 'react-router'
 
