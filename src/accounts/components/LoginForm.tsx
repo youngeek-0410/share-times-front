@@ -36,7 +36,7 @@ const LoginForm = () => {
         setOrganizationError('')
         setOrganizations(res.data)
       })
-      .catch((e) => {
+      .catch(() => {
         setOrganizationError(
           '展示名を読み込めませんでした。時間をおいて再読み込みしてください。',
         )
