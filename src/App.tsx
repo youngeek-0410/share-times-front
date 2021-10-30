@@ -3,12 +3,9 @@ import AppRouter from 'AppRouter'
 
 import { ChakraProvider } from '@chakra-ui/react'
 
-import Header from 'common/components/Header'
-
 function App() {
   return (
     <ChakraProvider>
-      <Header />
       <AppRouter />
     </ChakraProvider>
   )
