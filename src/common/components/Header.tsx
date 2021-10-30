@@ -13,12 +13,18 @@ import {
 import { HamburgerIcon } from '@chakra-ui/icons'
 
 import isAuthenticated from 'common/utils/isAuthenticated'
-import { loginFormPath } from 'common/utils/paths'
+import { homePath, loginFormPath } from 'common/utils/paths'
 
 const Header: FC = () => {
   const history = useHistory()
   const handleLogin = () => {
     history.push(loginFormPath)
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('username')
+    history.push(homePath)
   }
 
   return (
@@ -45,7 +51,9 @@ const Header: FC = () => {
         />
         <MenuList>
           {isAuthenticated() ? (
-            <MenuItem color="black">ログアウトする</MenuItem>
+            <MenuItem color="black" onClick={handleLogout}>
+              ログアウトする
+            </MenuItem>
           ) : (
             <MenuItem color="black" onClick={handleLogin}>
               ログインする
