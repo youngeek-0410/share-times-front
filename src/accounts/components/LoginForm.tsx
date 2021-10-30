@@ -14,7 +14,6 @@ import { Organization } from 'common/types/WaitingTimeHistories'
 
 import { client } from 'common/api/client'
 import { AxiosError } from 'axios'
-import { LoginErrors } from 'common/types/LoginErrors'
 import { submitWaitingTimeFormPath } from 'common/utils/paths'
 import { useHistory } from 'react-router'
 
@@ -61,7 +60,7 @@ const LoginForm = () => {
         })
         history.push(submitWaitingTimeFormPath)
       })
-      .catch((e: AxiosError<LoginErrors>) => {
+      .catch((e: AxiosError) => {
         setError('パスワードが間違っています')
       })
     clearInputs()
