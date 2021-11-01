@@ -36,8 +36,8 @@ const SubmitWaitingTimeForm = () => {
         })
         console.log(res.data)
       })
-      .catch((err) => {
-        setError(err.response.data.detail)
+      .catch(() => {
+        setError('送信に失敗しました')
       })
   }
 
