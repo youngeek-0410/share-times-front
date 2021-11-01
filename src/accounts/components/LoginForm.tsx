@@ -8,19 +8,19 @@ import {
   Button,
   Select,
   useToast,
+  Spinner,
 } from '@chakra-ui/react'
 
 import { Organization } from 'common/types/WaitingTimeHistories'
 
 import { client } from 'common/api/client'
-import { AxiosError } from 'axios'
 import { submitWaitingTimeFormPath } from 'common/utils/paths'
 import { useHistory } from 'react-router'
 
 const LoginForm = () => {
   const [organizationName, setOrganizationName] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const [organizations, setOrganizations] = useState<Organization[]>([])
+  const [organizations, setOrganizations] = useState<Organization[]>()
 
   const [error, setError] = useState<string>('')
   const [organizationError, setOrganizationError] = useState<string>('')
@@ -60,7 +60,7 @@ const LoginForm = () => {
         })
         history.push(submitWaitingTimeFormPath)
       })
-      .catch((e: AxiosError) => {
+      .catch(() => {
         setError('パスワードが間違っています')
       })
     clearInputs()
@@ -80,17 +80,21 @@ const LoginForm = () => {
           <label htmlFor="organization">
             <Text fontSize="large">展示名</Text>
           </label>
-          <Select
-            id="organization"
-            onChange={(e) => setOrganizationName(e.target.value)}
-            placeholder="選択する"
-          >
-            {organizations.map((organization: Organization) => (
-              <option key={organization.uuid} value={organization.name}>
-                {organization.name}
-              </option>
-            ))}
-          </Select>
+          {!organizations ? (
+            <Spinner />
+          ) : (
+            <Select
+              id="organization"
+              onChange={(e) => setOrganizationName(e.target.value)}
+              placeholder="選択する"
+            >
+              {organizations.map((organization: Organization) => (
+                <option key={organization.uuid} value={organization.name}>
+                  {organization.name}
+                </option>
+              ))}
+            </Select>
+          )}
           {organizationError && (
             <Text fontSize="sm" color="tomato">
               {organizationError}
