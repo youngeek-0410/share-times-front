@@ -20,7 +20,14 @@ import { useHistory } from 'react-router'
 const LoginForm = () => {
   const [organizationName, setOrganizationName] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const [organizations, setOrganizations] = useState<Organization[]>([])
+  const [organizations, setOrganizations] = useState<Organization[]>([
+    {
+      name: '',
+      uuid: '',
+      description: '',
+      type: 'CLUB',
+    },
+  ])
 
   const [error, setError] = useState<string>('')
   const [organizationError, setOrganizationError] = useState<string>('')
