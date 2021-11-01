@@ -1,5 +1,10 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
 
 import {
   homePath,
@@ -13,6 +18,7 @@ import Home from 'home/components/Home'
 import LoginForm from 'accounts/components/LoginForm'
 import SubmitWaitingTimeForm from 'waitingTime/components/SubmitWaitingTimeForm'
 import NotFound from 'common/components/NotFound'
+import isAuthenticated from 'common/utils/isAuthenticated'
 
 const AppRouter: React.FC = () => {
   return (
@@ -24,7 +30,13 @@ const AppRouter: React.FC = () => {
         <Route
           path={submitWaitingTimeFormPath}
           exact
-          component={SubmitWaitingTimeForm}
+          render={() =>
+            isAuthenticated() ? (
+              <SubmitWaitingTimeForm />
+            ) : (
+              <Redirect to={loginFormPath} />
+            )
+          }
         ></Route>
         <Route component={NotFound}></Route>
       </Switch>
