@@ -15,7 +15,6 @@ import { Organization } from 'common/types/WaitingTimeHistories'
 
 import { client } from 'common/api/client'
 import { submitWaitingTimeFormPath } from 'common/utils/paths'
-import { useHistory } from 'react-router'
 
 const LoginForm = () => {
   const [organizationName, setOrganizationName] = useState<string>('')
@@ -25,7 +24,6 @@ const LoginForm = () => {
   const [error, setError] = useState<string>('')
   const [organizationError, setOrganizationError] = useState<string>('')
 
-  const history = useHistory()
   const toast = useToast()
 
   useEffect(() => {
@@ -58,7 +56,7 @@ const LoginForm = () => {
           duration: 9000,
           isClosable: true,
         })
-        history.push(submitWaitingTimeFormPath)
+        window.location.href = submitWaitingTimeFormPath
       })
       .catch(() => {
         setError('パスワードが間違っています')

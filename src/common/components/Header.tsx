@@ -24,7 +24,7 @@ const Header: FC = () => {
   const handleLogout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('username')
-    history.push(homePath)
+    window.location.href = homePath
   }
 
   return (
