@@ -37,7 +37,9 @@ const SubmitWaitingTimeForm = () => {
         })
       })
       .catch((e: AxiosError) => {
-        e.response && setError(e.response.data.waiting_time)
+        e.response
+          ? setError(e.response.data.waiting_time)
+          : setError(['送信に失敗しました。'])
       })
   }
 
