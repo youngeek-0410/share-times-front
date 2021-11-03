@@ -21,7 +21,9 @@ const SlidableContents: React.FC<Props> = (props) => {
     <AutoSwipeableViews
       index={index}
       onChangeIndex={handleChangeIndex}
-      interval={5000}
+      interval={
+        Number(process.env.REACT_APP_AUTO_SWIPE_INTERVAL_SECONDS) * 1000
+      }
       enableMouseEvents
     >
       {waitingTimeHistories.map((waitingTimeHistory: WaitingTimeHistory) => {
