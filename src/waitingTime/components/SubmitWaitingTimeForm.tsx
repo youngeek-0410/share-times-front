@@ -9,13 +9,14 @@ import {
   Button,
   useToast,
 } from '@chakra-ui/react'
+import { AxiosError } from 'axios'
 import { authorizedClient } from 'common/api/client'
 import { WaitingTimeHistory } from 'common/types/WaitingTimeHistories'
 import { useState } from 'react'
 
 const SubmitWaitingTimeForm = () => {
   const [waitingTime, setWaitingTime] = useState<number>(0)
-  const [error, setError] = useState<string>('')
+  const [error, setError] = useState<string[]>([])
 
   const toast = useToast()
 
@@ -25,7 +26,7 @@ const SubmitWaitingTimeForm = () => {
         waiting_time: waitingTime,
       })
       .then((res) => {
-        setError('')
+        setError([])
         const response = res.data
         toast({
           title: '送信しました！',
@@ -34,10 +35,9 @@ const SubmitWaitingTimeForm = () => {
           duration: 9000,
           isClosable: true,
         })
-        console.log(res.data)
       })
-      .catch(() => {
-        setError('送信に失敗しました')
+      .catch((e: AxiosError) => {
+        e.response && setError(e.response.data.waiting_time)
       })
   }
 
@@ -65,11 +65,12 @@ const SubmitWaitingTimeForm = () => {
           <Spacer />
         </HStack>
       </Box>
-      {error && (
-        <Text fontSize="sm" color="tomato">
-          {error}
-        </Text>
-      )}
+      {error.length &&
+        error.map((e, index) => (
+          <Text key={index} fontSize="sm" color="tomato">
+            {e}
+          </Text>
+        ))}
       <Spacer height="5px" />
       <Button colorScheme="teal" size="md" onClick={handleSubmit}>
         送信
