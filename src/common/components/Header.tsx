@@ -39,7 +39,7 @@ const Header: FC = () => {
     >
       <Flex align="center" mr={5}>
         <Heading as="h1" size="lg" letterSpacing={'tighter'}>
-          ShareTimes
+          <a href={homePath}>ShareTimes</a>
         </Heading>
       </Flex>
       <Menu>
