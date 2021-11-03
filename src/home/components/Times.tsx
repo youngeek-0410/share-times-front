@@ -38,21 +38,15 @@ const Times = () => {
     getWaitingTimeHistories()
   }, Number(process.env.REACT_APP_REFRESH_INTERVAL_SECONDS) * 1000)
 
-  return (
-    <>
-      {loading ? (
-        <Spinner />
-      ) : error ? (
-        <Text color="tomato" textAlign="center" marginTop="200px">
-          {error}
-        </Text>
-      ) : (
-        waitingTimeHistories && (
-          <SlidableContents waitingTimeHistories={waitingTimeHistories} />
-        )
-      )}
-    </>
-  )
+  if (loading) return <Spinner />
+  if (error)
+    return (
+      <Text color="tomato" textAlign="center" marginTop="200px">
+        {error}
+      </Text>
+    )
+
+  return <SlidableContents waitingTimeHistories={waitingTimeHistories} />
 }
 
 export default Times
