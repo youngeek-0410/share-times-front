@@ -18,7 +18,12 @@ const SlidableContents: React.FC<Props> = (props) => {
   const [index, setIndex] = useState<number>(0)
   const handleChangeIndex = (index: number) => setIndex(index)
   return (
-    <AutoSwipeableViews index={index} onChangeIndex={handleChangeIndex}>
+    <AutoSwipeableViews
+      index={index}
+      onChangeIndex={handleChangeIndex}
+      interval={5000}
+      enableMouseEvents
+    >
       {waitingTimeHistories.map((waitingTimeHistory: WaitingTimeHistory) => {
         return (
           <WaitingTimeCards
