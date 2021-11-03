@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { client } from 'common/api/client'
 import { WaitingTimeHistory } from 'common/types/WaitingTimeHistories'
 
@@ -29,6 +29,10 @@ const Times = () => {
         setError('データの読み込みに失敗しました')
       })
   }
+
+  useEffect(() => {
+    getWaitingTimeHistories()
+  }, [])
 
   useInterval(() => {
     getWaitingTimeHistories()
