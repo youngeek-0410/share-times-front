@@ -1,8 +1,8 @@
 import { Box, Image, Badge, Spacer, Text, Center } from '@chakra-ui/react'
 
-import koyoLogo from 'assets/koyo_logo.jpg'
 import { WaitingTimeHistory } from 'common/types/WaitingTimeHistories'
 import { getBgColor, getJapaneseName } from 'common/utils/dict'
+import getPhotoPath from 'common/utils/photoPaths'
 
 const WaitingTimeCards = (props: WaitingTimeHistory) => {
   return (
@@ -11,17 +11,24 @@ const WaitingTimeCards = (props: WaitingTimeHistory) => {
       backgroundColor={getBgColor(props.organization.type)}
     >
       <Box
+        height="70%"
         width="50%"
         borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
         backgroundColor="white"
-        paddingTop="10"
+        marginY="auto"
+        paddingTop="4rem"
       >
-        <Image src={koyoLogo} alt="koyo_logo" marginX="auto" />
+        <Image
+          src={getPhotoPath(props.organization.name)}
+          alt="logo"
+          marginX="auto"
+          height="60%"
+        />
         <Box paddingX="16" paddingY="8">
           <Box>
-            <Badge borderRadius="full" px="2" colorScheme="teal" fontSize="lg">
+            <Badge borderRadius="full" px="2" colorScheme="teal" fontSize="xl">
               {getJapaneseName(props.organization.type)}
             </Badge>
           </Box>
@@ -29,7 +36,7 @@ const WaitingTimeCards = (props: WaitingTimeHistory) => {
             <Box
               mt="1"
               fontWeight="semibold"
-              fontSize="6xl"
+              fontSize="7xl"
               as="h1"
               isTruncated
             >
