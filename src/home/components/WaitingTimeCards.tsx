@@ -12,7 +12,7 @@ const WaitingTimeCards = (props: WaitingTimeHistory) => {
     >
       <Box
         height="70%"
-        width="50%"
+        minWidth="50%"
         borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
@@ -38,11 +38,11 @@ const WaitingTimeCards = (props: WaitingTimeHistory) => {
               fontWeight="semibold"
               fontSize="7xl"
               as="h1"
-              isTruncated
+              width="auto"
             >
               {props.organization.name}
             </Box>
-            <Spacer />
+            <Spacer minWidth="40px" />
             <Box display="flex" alignItems="baseline" fontWeight="semibold">
               <Text fontSize="8xl">{props.waiting_time}</Text>
               <Box as="span" color="gray.600" fontSize="lg" marginLeft="10px">
