@@ -1,6 +1,11 @@
 import { VStack, Heading, Text, Button } from '@chakra-ui/react'
 import isAuthenticated from 'common/utils/isAuthenticated'
-import { loginFormPath, submitWaitingTimeFormPath } from 'common/utils/paths'
+import {
+  currentTimesPath,
+  loginFormPath,
+  submitWaitingTimeFormPath,
+} from 'common/utils/paths'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
@@ -18,6 +23,9 @@ const Home = () => {
           ログイン
         </Button>
       )}
+      <Button>
+        <Link to={currentTimesPath}>待ち時間一覧を見る</Link>
+      </Button>
     </VStack>
   )
 }
