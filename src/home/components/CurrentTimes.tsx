@@ -46,8 +46,16 @@ const CuurentTimes: React.FC = () => {
     getWaitingTimeHistories()
   }, [])
 
-  if (loading) <Spinner />
-  if (error) <Text color="tomato">{error}</Text>
+  if (loading) {
+    return <Spinner />
+  }
+  if (error) {
+    return (
+      <Text color="tomato" textAlign="center">
+        {error}
+      </Text>
+    )
+  }
 
   return (
     <VStack spacing={4} paddingY="4">
