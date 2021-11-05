@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import {
   Heading,
@@ -13,7 +14,12 @@ import {
 import { HamburgerIcon } from '@chakra-ui/icons'
 
 import isAuthenticated from 'common/utils/isAuthenticated'
-import { homePath, loginFormPath } from 'common/utils/paths'
+import {
+  currentTimesPath,
+  homePath,
+  loginFormPath,
+  submitWaitingTimeFormPath,
+} from 'common/utils/paths'
 
 const Header: FC = () => {
   const history = useHistory()
@@ -51,14 +57,22 @@ const Header: FC = () => {
         />
         <MenuList>
           {isAuthenticated() ? (
-            <MenuItem color="black" onClick={handleLogout}>
-              ログアウトする
-            </MenuItem>
+            <>
+              <MenuItem color="black" onClick={handleLogout}>
+                ログアウトする
+              </MenuItem>
+              <MenuItem bgColor="teal.400">
+                <Link to={submitWaitingTimeFormPath}>待ち時間を送信</Link>
+              </MenuItem>
+            </>
           ) : (
             <MenuItem color="black" onClick={handleLogin}>
               ログインする
             </MenuItem>
           )}
+          <MenuItem color="black">
+            <Link to={currentTimesPath}>待ち時間一覧</Link>
+          </MenuItem>
         </MenuList>
       </Menu>
     </Flex>
