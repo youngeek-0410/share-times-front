@@ -61,18 +61,18 @@ const Header: FC = () => {
               <MenuItem color="black" onClick={handleLogout}>
                 ログアウトする
               </MenuItem>
-              <MenuItem bgColor="teal.400">
-                <Link to={submitWaitingTimeFormPath}>待ち時間を送信</Link>
-              </MenuItem>
+              <Link to={submitWaitingTimeFormPath}>
+                <MenuItem bgColor="teal.400">待ち時間を送信</MenuItem>
+              </Link>
             </>
           ) : (
             <MenuItem color="black" onClick={handleLogin}>
               ログインする
             </MenuItem>
           )}
-          <MenuItem color="black">
-            <Link to={currentTimesPath}>待ち時間一覧</Link>
-          </MenuItem>
+          <Link to={currentTimesPath}>
+            <MenuItem color="black">待ち時間一覧</MenuItem>
+          </Link>
         </MenuList>
       </Menu>
     </Flex>
