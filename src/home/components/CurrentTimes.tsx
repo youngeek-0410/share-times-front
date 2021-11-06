@@ -89,7 +89,7 @@ const CuurentTimes: React.FC = () => {
           </Box>
           <Spacer></Spacer>
           <Box marginY="auto" padding="4" marginRight="2">
-            {waitingTimeHistory.waiting_time ? (
+            {waitingTimeHistory.waiting_time != null ? (
               <Text fontSize="xl" fontWeight="semibold">
                 {waitingTimeHistory.waiting_time}分
               </Text>
