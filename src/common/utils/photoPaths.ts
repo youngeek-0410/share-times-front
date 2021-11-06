@@ -56,7 +56,7 @@ const getPhotoPath = (organizationName: string) => {
       return class4a
     case '機巧同好会':
       return trick
-    case '囲碁・将棋部':
+    case '囲碁将棋部':
       return shogi
     case '演劇部':
       return drama_and_film
